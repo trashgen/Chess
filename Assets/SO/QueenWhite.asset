@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: QueenWhite
   m_EditorClassIdentifier: 
   pfVisual: {fileID: 4792693276535560, guid: 602095b0ef3cc1a4fa4ae2d01e734f89, type: 3}
+  type: 9
   speed: 1
   health: 1

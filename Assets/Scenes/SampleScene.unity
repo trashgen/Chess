@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &230383254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 230383256}
+  - component: {fileID: 230383255}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &230383255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230383254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd98d69410361f2409558b1501d52bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfWhiteCell: {fileID: 146034929461046701, guid: 7bf318b6d898bff4d816a2ecedd3d328, type: 3}
+  pfBlackCell: {fileID: 8054080909302454860, guid: 3295a01300eaaca4581c540b77a1eb1d, type: 3}
+  battleUnitDB: {fileID: 369667531}
+--- !u!4 &230383256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230383254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &369667530
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,18 +199,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c893a65f151c7ec4ebc40ef87c6e76e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BishopBlack: {fileID: 11400000, guid: ad5d33ebf669be24ea26ddb86393f522, type: 2}
-  BishopWhite: {fileID: 11400000, guid: c2e89998dc5299345b7403ddec2401b5, type: 2}
-  KingBlack: {fileID: 11400000, guid: e891677dfa7d8084bb6f4d292173595a, type: 2}
-  KingWhite: {fileID: 11400000, guid: 41518eb2200601d43869c901162fc296, type: 2}
-  KnightBlack: {fileID: 11400000, guid: 229672434545cfa46b1e49bf6ed6b52a, type: 2}
-  KnightWhite: {fileID: 11400000, guid: 1d6fd72d8f7bc9845a01c68a360acae3, type: 2}
-  PawnBlack: {fileID: 11400000, guid: 8c06e3fc70e54a04fa0cf41eba890a3a, type: 2}
-  PawnWhite: {fileID: 11400000, guid: 657fc329efa06e249a4dda3b10bd9f55, type: 2}
-  QueenBlack: {fileID: 11400000, guid: 4a8f8c191b0da5e4982bcfe427917baa, type: 2}
-  QueenWhite: {fileID: 11400000, guid: 07898661626fb2340862cc39bda2a4a9, type: 2}
-  RookBlack: {fileID: 11400000, guid: 0e2441861edc7534b9699ca8270f1bc6, type: 2}
-  RookWhite: {fileID: 11400000, guid: 0107636526a53674b8fae1b4da858123, type: 2}
+  sos:
+  - {fileID: 11400000, guid: ad5d33ebf669be24ea26ddb86393f522, type: 2}
+  - {fileID: 11400000, guid: c2e89998dc5299345b7403ddec2401b5, type: 2}
+  - {fileID: 11400000, guid: e891677dfa7d8084bb6f4d292173595a, type: 2}
+  - {fileID: 11400000, guid: 41518eb2200601d43869c901162fc296, type: 2}
+  - {fileID: 11400000, guid: 229672434545cfa46b1e49bf6ed6b52a, type: 2}
+  - {fileID: 11400000, guid: 1d6fd72d8f7bc9845a01c68a360acae3, type: 2}
+  - {fileID: 11400000, guid: 8c06e3fc70e54a04fa0cf41eba890a3a, type: 2}
+  - {fileID: 11400000, guid: 657fc329efa06e249a4dda3b10bd9f55, type: 2}
+  - {fileID: 11400000, guid: 4a8f8c191b0da5e4982bcfe427917baa, type: 2}
+  - {fileID: 11400000, guid: 07898661626fb2340862cc39bda2a4a9, type: 2}
+  - {fileID: 11400000, guid: 0e2441861edc7534b9699ca8270f1bc6, type: 2}
+  - {fileID: 11400000, guid: 0107636526a53674b8fae1b4da858123, type: 2}
 --- !u!4 &369667532
 Transform:
   m_ObjectHideFlags: 0
@@ -177,7 +225,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -436,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c03e86d55774a3448b7c82499790bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessVisual: {fileID: 1575097810}
+  map: {fileID: 230383255}
 --- !u!4 &1456851955
 Transform:
   m_ObjectHideFlags: 0
@@ -451,51 +499,4 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1575097809
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1575097811}
-  - component: {fileID: 1575097810}
-  m_Layer: 0
-  m_Name: ChessVisual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1575097810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575097809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ce56bdf308dc8408ba8bb2dfc2c4a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pfWhiteCell: {fileID: 146034929461046701, guid: 7bf318b6d898bff4d816a2ecedd3d328, type: 3}
-  pfBlackCell: {fileID: 8054080909302454860, guid: 3295a01300eaaca4581c540b77a1eb1d, type: 3}
-  battleUnitDB: {fileID: 369667531}
---- !u!4 &1575097811
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575097809}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

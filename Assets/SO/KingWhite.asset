@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: KingWhite
   m_EditorClassIdentifier: 
   pfVisual: {fileID: 4725359452324732, guid: 9371e1ff2037e6347b977860cac9beb2, type: 3}
+  type: 3
   speed: 1
   health: 1

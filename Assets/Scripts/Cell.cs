@@ -30,9 +30,9 @@ public class Cell {
         _transform = t;
     }
 
-    public void AddBattleUnit(BattleUnit bu, Transform t) {
+    public void AddBattleUnit(BattleUnit bu) {
         _battleUnit = bu;
-        _transformBattleUnit = t;
+        _transformBattleUnit = bu.UnitTransform();
     }
 
     public bool HasBattleUnit() {

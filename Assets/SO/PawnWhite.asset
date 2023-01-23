@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PawnWhite
   m_EditorClassIdentifier: 
   pfVisual: {fileID: 4453024207206980, guid: 5f602aa0f5f98554da2e90d0a93cc967, type: 3}
+  type: 7
   speed: 1
   health: 1

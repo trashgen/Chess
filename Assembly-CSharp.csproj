@@ -61,13 +61,13 @@
      <Compile Include="Assets\CodeMonkey\Utils\World_Sprite.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
-     <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\Cell.cs" />
      <Compile Include="Assets\Scripts\ChessHandler.cs" />
-     <Compile Include="Assets\Scripts\ChessVisual.cs" />
      <Compile Include="Assets\SO\BattleUnitSO.cs" />
      <Compile Include="Assets\SO\BattleUnitDB.cs" />
      <Compile Include="Assets\Scripts\BattleUnit.cs" />
+     <Compile Include="Assets\Scripts\Map.cs" />
+     <Compile Include="Assets\Scripts\GridWrapper.cs" />
      <None Include="Assets\CodeMonkey\README.txt" />
      <None Include="Assets\2D Chess Graphic Pack V.2\readme.txt" />
      <Reference Include="UnityEngine">

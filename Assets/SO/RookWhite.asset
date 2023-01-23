@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: RookWhite
   m_EditorClassIdentifier: 
   pfVisual: {fileID: 4273468832716656, guid: 076d1293c3d094441a7689cbcf3024ca, type: 3}
+  type: 11
   speed: 1
   health: 1

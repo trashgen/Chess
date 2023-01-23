@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: RookBlack
   m_EditorClassIdentifier: 
   pfVisual: {fileID: 4946366647630536, guid: 2ad2779edc828984f8659e48ffef16c6, type: 3}
+  type: 10
   speed: 1
   health: 1
