@@ -16,8 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public class Grid<TGridObject> {
-
+public class Grid<TGridObject> where TGridObject : class {
     public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
     public class OnGridObjectChangedEventArgs : EventArgs {
         public int x;
@@ -106,7 +105,7 @@ public class Grid<TGridObject> {
         if (x >= 0 && y >= 0 && x < width && y < height) {
             return gridArray[x, y];
         }
-        return default(TGridObject);
+        return null;
     }
 
     public TGridObject GetGridObject(Vector3 worldPosition) {

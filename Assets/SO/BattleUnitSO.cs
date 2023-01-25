@@ -6,6 +6,7 @@ using UnityEngine;
 public class BattleUnitSO : ScriptableObject {
     public Transform pfVisual;
     public BattleUnitDB.Type type;
-    public float speed;
-    public int health;
+    public float speed = 1;
+    public int health = 1;
+    public int damage = 1;
 }

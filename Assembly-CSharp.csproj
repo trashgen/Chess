@@ -61,7 +61,7 @@
      <Compile Include="Assets\CodeMonkey\Utils\World_Sprite.cs" />
      <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\UI_TextComplex.cs" />
-     <Compile Include="Assets\Scripts\Cell.cs" />
+     <Compile Include="Assets\Scripts\BackgroundCell.cs" />
      <Compile Include="Assets\Scripts\ChessHandler.cs" />
      <Compile Include="Assets\SO\BattleUnitSO.cs" />
      <Compile Include="Assets\SO\BattleUnitDB.cs" />

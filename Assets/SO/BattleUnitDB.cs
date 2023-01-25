@@ -29,28 +29,10 @@ public class BattleUnitDB : MonoBehaviour {
         }
     }
 
-    // public BattleUnitSO BishopBlack; // Horse
-    // public BattleUnitSO BishopWhite; // Horse
-    //
-    // public BattleUnitSO KingBlack; 
-    // public BattleUnitSO KingWhite;
-    //
-    // public BattleUnitSO KnightBlack; 
-    // public BattleUnitSO KnightWhite; 
-    //
-    // public BattleUnitSO PawnBlack; 
-    // public BattleUnitSO PawnWhite;
-    //
-    // public BattleUnitSO QueenBlack; 
-    // public BattleUnitSO QueenWhite; 
-    //
-    // public BattleUnitSO RookBlack; 
-    // public BattleUnitSO RookWhite; 
-    
-    public BattleUnit SpawnUnit(Type type, Vector3 pos) {
+    public BattleUnit SpawnUnit(GridWrapper grid, Type type, Vector3 pos) {
         var so = battleUnitTemplates[type];
         var t = Instantiate(so.pfVisual, pos, Quaternion.identity);
-        return new BattleUnit(so, t, t.Find("icon"));
+        return new BattleUnit(grid, pos).Instantiate(so, t);
     }
 
     public int[,] PawnMove(int fromX, int fromY, bool isFirstMove) {

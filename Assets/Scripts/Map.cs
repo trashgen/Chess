@@ -21,43 +21,44 @@ public class Map : MonoBehaviour {
             for (int y = 0; y < grid.Height; y++) {
                 Vector3 pos = grid.CalcBattleUnitPost(x, y);
                 if ((x + y) % 2 == 1) {
-                    grid.SetChessCell(Instantiate(pfBlackCell, pos, quaternion.identity));
+                    grid.SetBackgroundCell(Instantiate(pfBlackCell, pos, quaternion.identity));
                 }
                 else {
-                    grid.SetChessCell(Instantiate(pfWhiteCell, pos, quaternion.identity));
+                    grid.SetBackgroundCell(Instantiate(pfWhiteCell, pos, quaternion.identity));
                 }
                 if (y == grid.Height - 2) {
-                    grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.PawnBlack, pos));
+                    grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.PawnBlack, pos));
                 } 
                 if (y == 1) {
-                    grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.PawnWhite, pos));
+                    grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.PawnWhite, pos));
                 }
             }
         }
         
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.RookWhite, grid.CalcBattleUnitPost(0, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.RookWhite, grid.CalcBattleUnitPost(7, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.RookBlack, grid.CalcBattleUnitPost(0, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.RookBlack, grid.CalcBattleUnitPost(7, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookWhite, grid.CalcBattleUnitPost(0, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookWhite, grid.CalcBattleUnitPost(7, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookBlack, grid.CalcBattleUnitPost(0, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookBlack, grid.CalcBattleUnitPost(7, 7)));
         
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.BishopWhite, grid.CalcBattleUnitPost(1, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.BishopWhite, grid.CalcBattleUnitPost(6, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.BishopBlack, grid.CalcBattleUnitPost(1, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.BishopBlack, grid.CalcBattleUnitPost(6, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopWhite, grid.CalcBattleUnitPost(1, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopWhite, grid.CalcBattleUnitPost(6, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopBlack, grid.CalcBattleUnitPost(1, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopBlack, grid.CalcBattleUnitPost(6, 7)));
         //
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.KnightWhite, grid.CalcBattleUnitPost(2, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.KnightWhite, grid.CalcBattleUnitPost(5, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.KnightBlack, grid.CalcBattleUnitPost(2, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.KnightBlack, grid.CalcBattleUnitPost(5, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightWhite, grid.CalcBattleUnitPost(2, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightWhite, grid.CalcBattleUnitPost(5, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightBlack, grid.CalcBattleUnitPost(2, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightBlack, grid.CalcBattleUnitPost(5, 7)));
         //
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.KingWhite, grid.CalcBattleUnitPost(3, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.QueenWhite, grid.CalcBattleUnitPost(4, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.KingBlack, grid.CalcBattleUnitPost(3, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(BattleUnitDB.Type.QueenBlack, grid.CalcBattleUnitPost(4, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KingWhite, grid.CalcBattleUnitPost(3, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.QueenWhite, grid.CalcBattleUnitPost(4, 0)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KingBlack, grid.CalcBattleUnitPost(3, 7)));
+        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.QueenBlack, grid.CalcBattleUnitPost(4, 7)));
     }
 
-    public void SetCell(Vector3 pos) {
-        
+    public BattleUnit SetCell(Vector3 pos) {
+        var go = grid.GetBattleUnit(pos);
+        return go;
     }
 
     public void SelectCell(Vector3 pos) {
@@ -71,16 +72,17 @@ public class Map : MonoBehaviour {
                 if (!ReferenceEquals(selectedBattleUnit, null)) {
                     selectedBattleUnit.Unselect();
                 }
-        
-                go.Select();
-                selectedBattleUnit = go;
+                if (!ReferenceEquals(go, null)) {
+                    go.Select();
+                    selectedBattleUnit = go;
+                }
             }
         }
         else {
             if (!ReferenceEquals(selectedBattleUnit, null)) {
                 selectedBattleUnit.Unselect();
+                selectedBattleUnit = null;
             }
-            selectedBattleUnit = null;
         }
     }
 }
