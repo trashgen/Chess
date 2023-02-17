@@ -1,88 +1,36 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Map : MonoBehaviour {
-    [SerializeField] private Transform pfWhiteCell;
-    [SerializeField] private Transform pfBlackCell;
-    [SerializeField] private BattleUnitDB battleUnitDB;
-    
-    private GridWrapper grid;
-    private BattleUnit selectedBattleUnit;
-
-    private void Awake() {
-        grid = new GridWrapper();
-    }
+    [SerializeField] private UnitGrid unit;
+    [SerializeField] private LandscapeGrid landscape;
 
     private void Start() {
-        for (int x = 0; x < grid.Width; x++) {
-            for (int y = 0; y < grid.Height; y++) {
-                Vector3 pos = grid.CalcBattleUnitPost(x, y);
-                if ((x + y) % 2 == 1) {
-                    grid.SetBackgroundCell(Instantiate(pfBlackCell, pos, quaternion.identity));
-                }
-                else {
-                    grid.SetBackgroundCell(Instantiate(pfWhiteCell, pos, quaternion.identity));
-                }
-                if (y == grid.Height - 2) {
-                    grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.PawnBlack, pos));
-                } 
-                if (y == 1) {
-                    grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.PawnWhite, pos));
-                }
-            }
-        }
-        
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookWhite, grid.CalcBattleUnitPost(0, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookWhite, grid.CalcBattleUnitPost(7, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookBlack, grid.CalcBattleUnitPost(0, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.RookBlack, grid.CalcBattleUnitPost(7, 7)));
-        
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopWhite, grid.CalcBattleUnitPost(1, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopWhite, grid.CalcBattleUnitPost(6, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopBlack, grid.CalcBattleUnitPost(1, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.BishopBlack, grid.CalcBattleUnitPost(6, 7)));
-        //
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightWhite, grid.CalcBattleUnitPost(2, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightWhite, grid.CalcBattleUnitPost(5, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightBlack, grid.CalcBattleUnitPost(2, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KnightBlack, grid.CalcBattleUnitPost(5, 7)));
-        //
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KingWhite, grid.CalcBattleUnitPost(3, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.QueenWhite, grid.CalcBattleUnitPost(4, 0)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.KingBlack, grid.CalcBattleUnitPost(3, 7)));
-        grid.AddBattleUnitToCell(battleUnitDB.SpawnUnit(grid, BattleUnitDB.Type.QueenBlack, grid.CalcBattleUnitPost(4, 7)));
+        unit.Generate();
+        landscape.Generate();
     }
 
-    public BattleUnit SetCell(Vector3 pos) {
-        var go = grid.GetBattleUnit(pos);
-        return go;
+    public void SpawnRook(Vector3 pos) {
+
     }
 
     public void SelectCell(Vector3 pos) {
-        var go = grid.GetBattleUnit(pos);
-        if (!ReferenceEquals(go, null)) {
-            if (go == selectedBattleUnit) {
-                selectedBattleUnit = null;
-                go.Unselect();
-            }
-            else {
-                if (!ReferenceEquals(selectedBattleUnit, null)) {
-                    selectedBattleUnit.Unselect();
-                }
-                if (!ReferenceEquals(go, null)) {
-                    go.Select();
-                    selectedBattleUnit = go;
-                }
-            }
+        var cellsToMove = unit.SelectCell(pos);
+        if (!ReferenceEquals(cellsToMove, null)) {
+            landscape.SelectCellFree(new List<Vector3>{pos});
+            landscape.MarkCells(cellsToMove);
         }
         else {
-            if (!ReferenceEquals(selectedBattleUnit, null)) {
-                selectedBattleUnit.Unselect();
-                selectedBattleUnit = null;
-            }
+            landscape.SelectCellBlocked(pos);
         }
+    }
+
+    public void ToggleEnterCell(Vector3 pos) {
+        unit.ToggleEnterCell(pos);
+        landscape.ToggleEnterCell(pos);
+    }
+
+    public void RemoveBattleUnit(Vector3 pos) {
+
     }
 }

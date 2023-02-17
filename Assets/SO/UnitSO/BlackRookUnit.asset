@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26da21ae58eb7a46ac63e06478ef76f, type: 3}
+  m_Name: BlackRookUnit
+  m_EditorClassIdentifier: 
+  type: {fileID: 11400000, guid: d130b6a8d049464479207647f20b8214, type: 2}
+  side: 1
+  prefab: {fileID: 4946366647630536, guid: 2ad2779edc828984f8659e48ffef16c6, type: 3}

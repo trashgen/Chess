@@ -2,53 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleUnit {
-    private int x;
-    private int y;
-    private GridWrapper grid;
-    private SpriteRenderer spriteRenderer;
+public class BattleUnit : MonoBehaviour {
+    [SerializeField] private BattleUnitHandler handler;
+    [SerializeField] private Transform pfVisual;
+    [SerializeField] private BattleUnitSO battleUnitSO;
 
-    public Transform Transform { get; private set; }
-    public BattleUnitSO BattleUnitSO { get; private set; }
+    private List<LandscapeCell> _markedCells;
 
-    public BattleUnit(GridWrapper grid, int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.grid = grid;
+    public BattleUnitSO BattleUnitSO() => battleUnitSO;
+    
+    public int X { get;  }
+    public int Y { get;  }
+
+    public Transform Transform { get; private set;  }
+
+    private BattleUnit(int x, int y) {
+        X = x;
+        Y = y;
     }
 
-    public BattleUnit(GridWrapper grid, Vector3 pos) {
-        x = (int) pos.x;
-        y = (int) pos.y;
-        this.grid = grid;
+    public BattleUnit Spawn(int startX, int startY) {
+        return Spawn(new Vector3(startX, startY));
     }
 
-    public BattleUnit Instantiate(BattleUnitSO so, Transform t) {
-        Transform = t;
-        BattleUnitSO = so;
-        spriteRenderer = t.Find("icon").gameObject.GetComponent<SpriteRenderer>();
+    public BattleUnit Spawn(Vector3 pos) {
+        handler = pfVisual.GetComponent<BattleUnitHandler>();
+        Transform = Instantiate(pfVisual, pos, Quaternion.identity);
         return this;
     }
 
+
     public void Select() {
-        spriteRenderer.color = Color.green;
-        var cellsToMark = grid.ShowAvailableCellsToGo(x, y);
-        foreach (var cell in cellsToMark) {
-            // cell.
-        }
+        // _markedCells = handler.AvailableCellsToMove();
+        // if (!ReferenceEquals(_markedCells, null)) {
+        //     for (int i = 0; i < _markedCells.Count; i++) {
+        //         if (i == 0) {
+        //             _markedCells[i].Select();
+        //         }
+        //         else {
+        //             _markedCells[i].Mark();
+        //         }
+        //     }
+        // }
     }
     
     public void Unselect() {
-        spriteRenderer.color = Color.white;
-    }
-
-    public List<BackgroundCell> MovementTemplate(BattleUnitDB.Type type, int x, int y) {
-        var res = new List<BackgroundCell>();
-        switch (type) {
-            case BattleUnitDB.Type.PawnWhite:
-                return res;
-            default:
-                return null;
+        if (!ReferenceEquals(_markedCells, null)) {
+            for (int i = 0; i < _markedCells.Count; i++) {
+                if (i == 0) {
+                    _markedCells[i].UnselectFree();
+                }
+                else {
+                    _markedCells[i].Unmark();
+                }
+            }
+            _markedCells.Clear();
         }
     }
 

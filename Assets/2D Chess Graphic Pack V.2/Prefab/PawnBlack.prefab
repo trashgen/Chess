@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4793423268509574}
+  - component: {fileID: 4023470144329941414}
   m_Layer: 0
   m_Name: PawnBlack
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4023470144329941414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080037110231092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a977c089a030754da0735acfcc4a107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler:
+    rid: -2
+  pfVisual: {fileID: 4793423268509574}
+  battleUnitSO: {fileID: 11400000, guid: 8c06e3fc70e54a04fa0cf41eba890a3a, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &1924333418654752
 GameObject:
   m_ObjectHideFlags: 0
