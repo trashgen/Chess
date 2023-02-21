@@ -10,17 +10,54 @@ public class UnitGrid : MonoBehaviour {
     [SerializeField] private float cellSize;
     [SerializeField] private UnitLayoutSO unitLayoutSO;
     [SerializeField] private StringValue unitNameDataRef;
+    [SerializeField] private GameEventListListVector3 onMarkMovableCells;
+    [SerializeField] private GameEventEmpty onUnmarkMovableCells;
 
     private UnitCell _enteredCell;
     private UnitCell _selectedCell;
     private Grid<UnitCell> _grid;
+
+    public int Width => width;
+    public int Height => height;
+
+    public Grid<UnitCell> Grid() => _grid;
     
     private void Awake() {
         _grid = new Grid<UnitCell>(width, height, cellSize, Vector3.zero,
             (g, x, y) => new UnitCell(g, x, y));
     }
 
-    public void Generate() {
+    private void Start() {
+        Generate();
+    }
+
+    public bool IsEmpty(int x, int y) {
+        return ReferenceEquals(_grid.GetGridObjectDirect(x, y)?.Unit, null);
+    }
+
+    public bool HasCell(int x, int y) {
+        return !ReferenceEquals(_grid.GetGridObjectDirect(x, y), null);
+    }
+
+    public bool HasWhiteUnit(int x, int y) {
+        var unit = _grid.GetGridObjectDirect(x, y)?.Unit;
+        if (ReferenceEquals(unit, null)) {
+            return false;
+        }
+
+        return unit.side == AbstractUnitSO.Side.White;
+    }
+
+    public bool HasBlackUnit(int x, int y) {
+        var unit = _grid.GetGridObjectDirect(x, y)?.Unit;
+        if (ReferenceEquals(unit, null)) {
+            return false;
+        }
+
+        return unit.side == AbstractUnitSO.Side.Black;
+    }
+
+    private void Generate() {
         foreach (var u in unitLayoutSO.units) {
             var t = Instantiate(u.unitSO.prefab,
                 _grid.CalcVector3(u.pos), quaternion.identity);
@@ -29,7 +66,7 @@ public class UnitGrid : MonoBehaviour {
         }
     }
 
-    public List<Vector3> SelectCell(Vector3 pos) { 
+    public void SelectCell(Vector3 pos) { 
         if (ReferenceEquals(_selectedCell, null)) {
             _selectedCell = _grid.GetGridObject(pos);
         }
@@ -42,14 +79,15 @@ public class UnitGrid : MonoBehaviour {
                 else {
                     _selectedCell = cell;
                 }
+                onUnmarkMovableCells.Raise();
             }
         }
-
-        if (!ReferenceEquals(_selectedCell, null)) {
-            return _selectedCell.Unit.AvailableCellsToMove(this);
+        if (!ReferenceEquals(_selectedCell?.Unit, null)) {
+            onMarkMovableCells.Raise(_selectedCell?.Unit.AvailableCellsToMove(this, _selectedCell));
         }
-
-        return null;
+        else {
+            onUnmarkMovableCells.Raise();
+        }
     }
 
     public void ToggleEnterCell(Vector3 pos) { }

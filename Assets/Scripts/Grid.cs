@@ -137,6 +137,10 @@ public class Grid<TGridObject> where TGridObject : class {
         return GetGridObject(x, y);
     }
 
+    public TGridObject GetGridObjectDirect(int x, int y) {
+        return GetGridObject(x, y);
+    }
+
     public TGridObject GetGridObjectDirect(Vector3 pos) {
         return GetGridObject((int) pos.x, (int) pos.y);
     }

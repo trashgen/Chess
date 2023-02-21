@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26da21ae58eb7a46ac63e06478ef76f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e9f725fe63881b478d9251e7bdc8b07, type: 3}
   m_Name: WhiteBishopUnit
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 91658994ae111494180dabc8a1692971, type: 2}

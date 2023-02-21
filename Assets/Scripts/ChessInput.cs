@@ -26,7 +26,6 @@ public class ChessInput : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(2)) {
             var pos = GetMouseWorldPosition();
-            map.SpawnRook(pos);
             CMDebug.TextPopupMouse($"{pos.ToString()}");
         }
     }

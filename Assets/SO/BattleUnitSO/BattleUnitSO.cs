@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Cell", menuName = "Chess/UnitCell")]
 public class BattleUnitSO : ScriptableObject {
     public enum Side {
         White,

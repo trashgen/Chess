@@ -11,8 +11,10 @@ public class LandscapeGrid : MonoBehaviour {
     [SerializeField] private LandscapeSO landscapeSO;
     [SerializeField] private StringValue posDataRef;
 
+    private List<List<Vector3>> _markedCells;
     private LandscapeCell _enteredCell;
     private LandscapeCell _selectedCell;
+    private LandscapeCell _blockedCell;
     private Grid<LandscapeCell> _grid;
 
     private void Awake() {
@@ -20,7 +22,11 @@ public class LandscapeGrid : MonoBehaviour {
             (g, x, y) => new LandscapeCell(g, x, y));
     }
 
-    public void Generate() {
+    private void Start() {
+        Generate();
+    }
+
+    private void Generate() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 var pos = _grid.CalcVector3(x, y);
@@ -32,12 +38,7 @@ public class LandscapeGrid : MonoBehaviour {
         }
     }
 
-    public List<Vector3> SelectCellFree(List<Vector3> posList) {
-        Vector3 pos = Vector3.zero;
-        if (posList.Count == 1) {
-            pos = posList[0];
-        }
-
+    public void SelectCell(Vector3 pos) {
         if (ReferenceEquals(_selectedCell, null)) {
             _selectedCell = _grid.GetGridObject(pos);
             _selectedCell?.SelectFree();
@@ -56,8 +57,6 @@ public class LandscapeGrid : MonoBehaviour {
                 }
             }
         }
-
-        return null;
     }
 
     public void SelectCellBlocked(Vector3 pos) {
@@ -87,6 +86,7 @@ public class LandscapeGrid : MonoBehaviour {
             return;
         }
 
+        _blockedCell?.UnselectBlocked();
         if (!ReferenceEquals(cell, null)) {
             if (ReferenceEquals(_enteredCell, null)) {
                 _enteredCell = cell;
@@ -106,12 +106,35 @@ public class LandscapeGrid : MonoBehaviour {
         }
     }
 
-    public void MarkCells(List<Vector3> posList) {
-        foreach (var p in posList) {
-            var cell = _grid.GetGridObject(p);
-            cell.Mark();
+    public void MarkCells(List<List<Vector3>> posList) {
+        if (posList[0].Count == 1) { // only cell w/ selected unit
+            var cell = _grid.GetGridObjectDirect(posList[0][0]);
+            cell?.SelectBlocked();
+            _blockedCell = cell;
+            return;
+        }
+        _markedCells = posList;
+        // Mark cells to Move without selected cell
+        for (int i = 1; i < _markedCells[0].Count; i++) {
+            _grid.GetGridObjectDirect(_markedCells[0][i]).Mark();
+        }
+        // Mark cells to Attack without selected cell
+        foreach (var c in _markedCells[1]) {
+            _grid.GetGridObjectDirect(c).MarkAttack();
         }
     }
 
-    public void UnmarkCells(List<Vector3> posList) { }
+    public void UnmarkCells() {
+        _blockedCell?.UnselectBlocked();
+        if (ReferenceEquals(_markedCells, null)) {
+            return;
+        }
+        foreach (var c in _markedCells[0]) {
+            _grid.GetGridObjectDirect(c).Unmark();
+        }
+        foreach (var c in _markedCells[1]) {
+            _grid.GetGridObjectDirect(c).UnmarkAttack();
+        }
+        _markedCells = null;
+    }
 }

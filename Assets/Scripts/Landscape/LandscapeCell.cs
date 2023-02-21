@@ -11,6 +11,7 @@ public class LandscapeCell {
     private LandscapeSO _landscape;
     private GameObject _mark;
     private GameObject _onEnter;
+    private GameObject _attackMarker;
     private GameObject _selectionFree;
     private GameObject _selectionBlocked;
 
@@ -23,6 +24,7 @@ public class LandscapeCell {
     public void Instantiate(LandscapeSO landscape, Transform t) {
         _mark = t.Find("mark").gameObject;
         _onEnter = t.Find("infoActiveBorder").gameObject;
+        _attackMarker = t.Find("attackMarker").gameObject;
         _selectionFree = t.Find("freeSelectionBorder").gameObject;
         _selectionBlocked = t.Find("blockedSelectionBorder").gameObject;
         _landscape = landscape;
@@ -35,6 +37,14 @@ public class LandscapeCell {
 
     public void Unmark() {
         _mark.SetActive(false);
+    }
+
+    public void MarkAttack() {
+        _attackMarker.SetActive(true);
+    }
+
+    public void UnmarkAttack() {
+        _attackMarker.SetActive(false);
     }
 
     public void OnEnter() {

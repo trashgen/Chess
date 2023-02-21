@@ -11,6 +11,8 @@ public class UnitCell {
     private GameObject _selection;
     private Transform _transform;
 
+    public int X() => _x;
+    public int Y() => _y;
     public AbstractUnitSO Unit => _unit;
 
     public UnitCell(Grid<UnitCell> grid, int x, int y) {
@@ -22,6 +24,10 @@ public class UnitCell {
     public void Instantiate(AbstractUnitSO unit, Transform t) {
         _unit = unit;
         _transform = t;
+    }
+
+    public bool IsEmpty() {
+        return ReferenceEquals(_unit, null);
     }
     
     public void Select() {
